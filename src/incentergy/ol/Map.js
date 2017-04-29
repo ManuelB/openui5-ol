@@ -21,6 +21,11 @@ sap.ui.define(["ol", "sap/ui/core/Control"], function(ol, Control) {
             this._pRendered = new Promise(function(resolve, reject) {
                 me._fnRendered = resolve;
             });
+            sap.ui.getCore().attachThemeChanged(function() {
+                if (me._map) {
+                    me._map.updateSize();
+                }
+            });
         },
         renderer: function(oRM, oControl) {
             oRM.write("<div style=\"height: 100%\" ");
@@ -40,6 +45,12 @@ sap.ui.define(["ol", "sap/ui/core/Control"], function(ol, Control) {
         },
         _rendered: function() {
             return this._pRendered;
+        },
+        viewFit: function(extent) {
+            var me = this;
+            this._rendered().then(function() {
+                me._map.getView().fit(extent);
+            });
         }
     });
     return Map;
