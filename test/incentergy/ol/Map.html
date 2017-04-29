@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script id='sap-ui-bootstrap' src="https://openui5.hana.ondemand.com/1.44.12/resources/sap-ui-core.js" data-sap-ui-theme='sap_belize' data-sap-ui-compatVersion='edge' data-sap-ui-preload='async' data-sap-ui-bindingSyntax='complex' data-sap-ui-resourceroots='{
+	 	"incentergy.ol" : "../../../src/incentergy/ol",
+        "ol": "https://cdnjs.cloudflare.com/ajax/libs/ol3/4.1.0/ol"
+	 }' data-sap-ui-libs='sap.m,incentergy.ol'>
+    </script>
+    <title>Test Page for ol.Map</title>
+    <script>
+        sap.ui.getCore().attachInit(function() {
+            new sap.m.App({
+                name: "incentergy.ol.Map",
+                pages: [
+                    new sap.m.Page({
+                        title: "incentergy.ol.Map Testpage",
+                        content: [new incentergy.ol.Map({
+                            layers: [
+                                new incentergy.ol.layer.Tile({
+                                    "source": new incentergy.ol.source.OSM({
+                                        "url": 'https://\\{a-c\\}.tile.thunderforest.com/cycle/\\{z\\}/\\{x\\}/\\{y\\}.png' +
+                                            '?apikey=e5da76567a144d2888f7669cfcfc20b6'
+                                    })
+                                }),
+                                new incentergy.ol.layer.Vector({
+                                    "source": new incentergy.ol.source.Vector({
+                                        "features": [new incentergy.ol.Feature({
+                                            wkt: 'POLYGON((10.689 -25.092, 34.595 ' +
+                                                '-20.170, 38.814 -35.639, 13.502 ' +
+                                                '-39.155, 10.689 -25.092))'
+                                        })]
+                                    })
+                                })
+                            ]
+                        })]
+                    })
+                ]
+            }).placeAt("content");
+        });
+    </script>
+</head>
+
+<body class='sapUiBody'>
+    <div id='content'></div>
+</body>
+
+</html>
