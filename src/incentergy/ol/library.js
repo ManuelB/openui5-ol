@@ -42,8 +42,6 @@ sap.ui.define([], // library dependency
                 "incentergy.ol.source.XYZ"
             ],
             elements: [
-                "incentergy.ol.geom.Point",
-                "incentergy.ol.geom.Polygon",
             ]
         });
 
