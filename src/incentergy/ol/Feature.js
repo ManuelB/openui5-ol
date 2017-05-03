@@ -13,11 +13,16 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                     "wkt": {
                         type: "string",
                         defaultValue: null
+                    },
+                    "CRS": {
+                        type: "string",
+                        defaultValue: "4326"
                     }
                 }
             },
             constructor: function() {
                 this._feature = new ol.Feature();
+                this._bFeatureAdded = false;
                 var me = this;
                 this._pLayerSet = new Promise(function(resolve, reject) {
                     me._fnLayerSet = resolve;
@@ -49,12 +54,15 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                         // Map
                         var oVectorLayer = oSource.getParent();
                         oVectorLayer.mapSet().then(function() {
-                            oSource._source.removeFeature(me._feature);
+                            if (me._bFeatureAdded) {
+                                oSource._source.removeFeature(me._feature);
+                            }
                             me._feature = format.readFeature(wkt, {
-                                dataProjection: 'EPSG:4326',
+                                dataProjection: 'EPSG:' + me.getCRS(),
                                 featureProjection: 'EPSG:3857'
                             });
                             oSource._source.addFeature(me._feature);
+                            me._bFeatureAdded = true;
                         })
                     })
                 })

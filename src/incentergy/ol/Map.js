@@ -33,6 +33,11 @@ sap.ui.define(["ol", "sap/ui/core/Control"], function(ol, Control) {
             oRM.write(">");
             oRM.write("</div>");
         },
+        invalidate: function() {
+            // do not invalidate this component.
+            // We will care for all the updates
+            // that would require rerendering
+        },
         onAfterRendering: function() {
             this._fnRendered();
             this._map = new ol.Map({
