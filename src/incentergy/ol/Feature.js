@@ -18,6 +18,12 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                         type: "string",
                         defaultValue: "4326"
                     }
+                },
+                aggregations: {
+                    "style": {
+                        type: "incentergy.ol.style.Style",
+                        multiple: false
+                    }
                 }
             },
             constructor: function() {
@@ -28,6 +34,10 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                     me._fnLayerSet = resolve;
                 });
                 ManagedObject.apply(this, arguments);
+            },
+            setStyle: function(style) {
+                this._feature.setStyle(style._style);
+                return this.setAggregation("style", style);
             },
             setParent: function(oParent) {
                 var me = this;
@@ -61,6 +71,9 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                                 dataProjection: 'EPSG:' + me.getCRS(),
                                 featureProjection: 'EPSG:3857'
                             });
+                            if (me.getStyle()) {
+                                me._feature.setStyle(me.getStyle()._style);
+                            }
                             oSource._source.addFeature(me._feature);
                             me._bFeatureAdded = true;
                         })
