@@ -39,11 +39,16 @@
             var oMap = new incentergy.ol.Map({
                 layers: [
                     new incentergy.ol.layer.Tile({
+                        "source": new incentergy.ol.source.BingMaps({
+                            "key": "AuUSWt9mS7s6qZ1Ms9WHWO-HwRZekerD3U8j06cEFA-UVHAXrrC34K9a_iHDhzg8"
+                        })
+                    }),
+                    /*new incentergy.ol.layer.Tile({
                         "source": new incentergy.ol.source.OSM({
                             "url": 'https://\\{a-c\\}.tile.thunderforest.com/cycle/\\{z\\}/\\{x\\}/\\{y\\}.png' +
                                 '?apikey=e5da76567a144d2888f7669cfcfc20b6'
                         })
-                    }),
+                    }),*/
                     oVectorLayer
                 ]
             });

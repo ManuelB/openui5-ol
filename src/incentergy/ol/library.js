@@ -36,13 +36,13 @@ sap.ui.define([], // library dependency
                 "incentergy.ol.layer.Vector",
                 "incentergy.ol.source.Vector",
                 "incentergy.ol.source.OSM",
+                "incentergy.ol.source.BingMaps",
                 "incentergy.ol.source.Tile",
                 "incentergy.ol.source.UrlTile",
                 "incentergy.ol.source.TileImage",
                 "incentergy.ol.source.XYZ"
             ],
-            elements: [
-            ]
+            elements: []
         });
 
         return incentergy.ol;
