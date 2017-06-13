@@ -41,15 +41,25 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
             },
             setParent: function(oParent) {
                 var me = this;
-                oParent.mapSet().then(
-                    function() {
+                if(oParent != null) {
+                    // Add the feature
+                    oParent.mapSet().then(function() {
                         var oVectorLayer = oParent.getParent();
                         oVectorLayer.mapSet().then(function() {
                             oParent._source.addFeature(me._feature);
                         });
                         me._fnLayerSet();
-                    }
-                )
+                    });
+                } else if(this.getParent()) {
+                    var meParent = this.getParent();
+                    // remove the feature
+                    meParent.mapSet().then(function() {
+                        var oVectorLayer = meParent.getParent();
+                        oVectorLayer.mapSet().then(function() {
+                            meParent._source.removeFeature(me._feature);
+                        });
+                    });
+                }
                 var retVal = ManagedObject.prototype.setParent.apply(this, arguments);
                 return retVal;
             },
