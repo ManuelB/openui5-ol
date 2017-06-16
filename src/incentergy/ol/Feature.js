@@ -14,6 +14,10 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                         type: "string",
                         defaultValue: null
                     },
+                    "name": {
+                        type: "string",
+                        defaultValue: null
+                    },
                     "CRS": {
                         type: "string",
                         defaultValue: "4326"
@@ -23,8 +27,13 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                     "style": {
                         type: "incentergy.ol.style.Style",
                         multiple: false
+                    },
+                    "geometry": {
+                        type: "incentergy.ol.geom.Geometry",
+                        multiple: false
                     }
-                }
+                },
+                defaultAggregation: "geometry"
             },
             constructor: function() {
                 this._feature = new ol.Feature();
@@ -39,9 +48,13 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                 this._feature.setStyle(style._style);
                 return this.setAggregation("style", style);
             },
+            setGeometry: function(geometry) {
+                this._feature.setGeometry(geometry._geometry);
+                return this.setAggregation("geometry", geometry);
+            },
             setParent: function(oParent) {
                 var me = this;
-                if(oParent != null) {
+                if (oParent != null) {
                     // Add the feature
                     oParent.mapSet().then(function() {
                         var oVectorLayer = oParent.getParent();
@@ -50,7 +63,7 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                         });
                         me._fnLayerSet();
                     });
-                } else if(this.getParent()) {
+                } else if (this.getParent()) {
                     var meParent = this.getParent();
                     // remove the feature
                     meParent.mapSet().then(function() {
