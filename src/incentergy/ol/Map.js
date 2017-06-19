@@ -66,6 +66,10 @@ sap.ui.define(["ol", "sap/ui/core/Control"], function(ol, Control) {
                 }),
                 target: this.getId()
             });
+            var me = this;
+            //this.attachResize(function() {
+            //    me._map.updateSize();
+            //});
         },
         /**
          * Returns a promise if this map was already
@@ -88,6 +92,30 @@ sap.ui.define(["ol", "sap/ui/core/Control"], function(ol, Control) {
                     oOptions["duration"] = 500;
                 }
                 me._map.getView().fit(aExtent, oOptions);
+            });
+        },
+        /**
+         * Center on coordinate and view position.
+         * @param {ol.Coordinate} coordinate Coordinate.
+         * @param {ol.Size} size Box pixel size.
+         * @param {ol.Pixel} position Position on the view to center on.
+         */
+        centerOn: function(coordinate, size, position) {
+            var me = this;
+            this._rendered().then(function() {
+                me._map.getView().centerOn(coordinate, size, position);
+            });
+        },
+        /**
+         * Set the center of the current view.
+         * @param {ol.Coordinate|undefined} center The center of the view.
+         * @observable
+         * @api
+         */
+        setCenter: function(center) {
+            var me = this;
+            this._rendered().then(function() {
+                me._map.getView().setCenter(center);
             });
         }
     });
