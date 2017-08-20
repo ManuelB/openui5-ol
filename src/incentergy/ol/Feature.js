@@ -87,23 +87,27 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                         // Map
                         var oVectorLayer = oSource.getParent();
                         oVectorLayer.mapSet().then(function() {
-                            // Start performance measure
-                            jQuery.sap.measure.start(me.getId() + "---FeatureGeneration", "FeatureGeneration of " + wkt, ["ol"]);
-                            if (me._bFeatureAdded) {
-                                oSource._source.removeFeature(me._feature);
-                            }
-                            me._feature = format.readFeature(wkt, {
-                                dataProjection: 'EPSG:' + me.getCRS(),
-                                featureProjection: 'EPSG:3857'
-                            });
-                            if (me.getStyle()) {
-                                me._feature.setStyle(me.getStyle()._style);
-                            }
-                            oSource._source.addFeature(me._feature);
-                            me._bFeatureAdded = true;
+                            try {
+                                // Start performance measure
+                                jQuery.sap.measure.start(me.getId() + "---FeatureGeneration", "FeatureGeneration of " + wkt, ["ol"]);
+                                if (me._bFeatureAdded) {
+                                    oSource._source.removeFeature(me._feature);
+                                }
+                                me._feature = format.readFeature(wkt, {
+                                    dataProjection: 'EPSG:' + me.getCRS(),
+                                    featureProjection: 'EPSG:3857'
+                                });
+                                if (me.getStyle()) {
+                                    me._feature.setStyle(me.getStyle()._style);
+                                }
+                                oSource._source.addFeature(me._feature);
+                                me._bFeatureAdded = true;
 
-                            // end performance measurement
-                            jQuery.sap.measure.end(me.getId() + "---FeatureGeneration");
+                                // end performance measurement
+                                jQuery.sap.measure.end(me.getId() + "---FeatureGeneration");
+                           } catch(e) {
+                               jQuery.sap.log.warning("Could not add genometry with WKT string: "+wkt);
+                           }
                         })
                     })
                 })
