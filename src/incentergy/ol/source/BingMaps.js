@@ -10,7 +10,7 @@ sap.ui.define(['ol', './TileImage'],
                 library: "incentergy.ol",
                 properties: {
                     "cacheSize": {
-                        type: "number",
+                        type: "int",
                         defaultValue: 2048
                     },
                     "hidpi": {
@@ -30,7 +30,7 @@ sap.ui.define(['ol', './TileImage'],
                         defaultValue: "AerialWithLabels"
                     },
                     "maxZoom": {
-                        type: "number",
+                        type: "int",
                         defaultValue: undefined
                     },
                     //"tileLoadFunction" : {
