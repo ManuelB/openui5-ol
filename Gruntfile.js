@@ -5,7 +5,7 @@ module.exports = function(grunt) {
             library: {
                 options: {
                     resources: 'src',
-                    dest: 'dist'
+                    dest: 'target/classes/META-INF/resources/'
                 },
                 libraries: 'incentergy/ol'
             }
