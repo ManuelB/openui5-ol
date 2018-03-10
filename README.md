@@ -37,7 +37,7 @@ If you directly want to access it via CDN:
 <script id='sap-ui-bootstrap'
 	src='https://openui5.hana.ondemand.com/1.52.5/resources/sap-ui-core.js'
 	data-sap-ui-resourceroots='{
-        "incentergy.ol": "https://ManuelB.github.com/openui5-ol/0.0.1/incentergy/ol",
+        "incentergy.ol": "https://cdn.rawgit.com/ManuelB/openui5-ol/gh-pages/0.0.1/incentergy/ol",
         "ol": "https://cdnjs.cloudflare.com/ajax/libs/ol3/4.1.0/ol"}'
 	data-sap-ui-theme='sap_belize' data-sap-ui-libs='sap.m,sap.ui.layout,incentergy.ol'
 	data-sap-ui-compatVersion='edge' data-sap-ui-preload='async'
