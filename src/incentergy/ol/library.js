@@ -30,21 +30,22 @@ sap.ui.define([], // library dependency
             controls: [
                 "incentergy.ol.Map",
                 "incentergy.ol.Feature",
+                "incentergy.ol.geom.Geometry",
+                "incentergy.ol.geom.SimpleGeometry",
+                "incentergy.ol.geom.Circle",
                 "incentergy.ol.layer.Base",
                 "incentergy.ol.layer.Layer",
                 "incentergy.ol.layer.Tile",
                 "incentergy.ol.layer.Vector",
                 "incentergy.ol.source.Vector",
                 "incentergy.ol.source.OSM",
+                "incentergy.ol.source.BingMaps",
                 "incentergy.ol.source.Tile",
                 "incentergy.ol.source.UrlTile",
                 "incentergy.ol.source.TileImage",
                 "incentergy.ol.source.XYZ"
             ],
-            elements: [
-                "incentergy.ol.geom.Point",
-                "incentergy.ol.geom.Polygon",
-            ]
+            elements: []
         });
 
         return incentergy.ol;

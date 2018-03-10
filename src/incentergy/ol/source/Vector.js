@@ -14,11 +14,15 @@ sap.ui.define(['ol', './Source'],
                         multiple: true,
                         singularName: "feature"
                     }
-                }
+                },
+                defaultAggregation: "features"
             },
             constructor: function() {
                 Source.apply(this, arguments);
                 this._source = new ol.source.Vector();
+            },
+            getExtent: function() {
+                return this._source.getExtent();
             }
         });
         return Vector;

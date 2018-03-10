@@ -28,6 +28,13 @@ sap.ui.define(['ol', 'sap/ui/base/Object', 'sap/ui/base/ManagedObject', 'sap/ui/
             },
             mapSet: function() {
                 return this.pMapSet;
+            },
+            getExtent: function() {
+                if(this._layer) {
+                    return this._layer.getExtent();
+                } else {
+                    return undefined;
+                }
             }
         });
         return Base;
