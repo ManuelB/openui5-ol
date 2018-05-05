@@ -1,4 +1,4 @@
-sap.ui.define(["ol", "sap/ui/core/Control"], function(ol, Control) {
+sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], function(ol, Control, ResizeHandler) {
     "use strict";
     /**
      * Constructor for a new Map.
@@ -66,10 +66,17 @@ sap.ui.define(["ol", "sap/ui/core/Control"], function(ol, Control) {
                 }),
                 target: this.getId()
             });
-            var me = this;
-            //this.attachResize(function() {
-            //    me._map.updateSize();
-            //});
+            try {            	
+            	ResizeHandler.register(this.getDomRef(), jQuery.proxy(this.onresize, this));
+            } catch(e) {
+            	jQuery.sap.log.error("Could not attach resize handler: "+e);
+            }
+        },
+        /**
+         * When the control is resized, update the map size.
+         */
+        onresize: function () {
+        	this._map.updateSize();
         },
         /**
          * Returns a promise if this map was already

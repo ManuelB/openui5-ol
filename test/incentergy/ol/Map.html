@@ -5,7 +5,7 @@
     <script id='sap-ui-bootstrap' src="https://openui5.hana.ondemand.com/1.44.12/resources/sap-ui-core.js" data-sap-ui-theme='sap_belize' data-sap-ui-compatVersion='edge' data-sap-ui-preload='async' data-sap-ui-bindingSyntax='complex' data-sap-ui-resourceroots='{
 	 	"incentergy.ol" : "../../../src/incentergy/ol",
         "ol": "https://cdnjs.cloudflare.com/ajax/libs/ol3/4.6.5/ol"
-	 }' data-sap-ui-libs='sap.m,incentergy.ol'>
+	 }' data-sap-ui-libs='sap.m,sap.ui.layout,incentergy.ol'>
     </script>
     <title>Test Page for ol.Map</title>
     <script>
@@ -61,7 +61,7 @@
                 pages: [
                     new sap.m.Page({
                         title: "incentergy.ol.Map Testpage",
-                        content: [oMap],
+                        content: [new sap.ui.layout.Splitter({contentAreas: [oMap, new sap.m.Panel()]})],
                         footer: [new sap.m.Toolbar({
                             content: [new sap.m.ToolbarSpacer(), new sap.m.Button({
                                 text: "Zoom to extend",
