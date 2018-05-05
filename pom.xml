@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.incentergy.openui5</groupId>
 	<artifactId>ol</artifactId>
@@ -25,8 +26,8 @@
 	<scm>
 		<url>https://github.com/ManuelB/openui5-ol</url>
 		<connection>scm:git:https://github.com/ManuelB/openui5-ol</connection>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 	<developers>
 		<developer>
 			<id>ManuelB</id>
@@ -40,6 +41,28 @@
 	</issueManagement>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>com.github.klieber</groupId>
+				<artifactId>phantomjs-maven-plugin</artifactId>
+				<version>0.7</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>install</goal>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<version>2.1.1</version>
+					<checkSystemPath>false</checkSystemPath>
+					<script>${project.basedir}/test/run-qunit.js</script>
+					<arguments>
+						<argument>${project.basedir}/test/testsuite.qunit.html</argument>
+					</arguments>
+					<commandLineOptions>--ignore-ssl-errors=true --web-security=false</commandLineOptions>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.0.2</version>
