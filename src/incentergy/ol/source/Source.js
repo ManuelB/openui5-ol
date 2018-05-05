@@ -2,10 +2,10 @@
  * ${copyright}
  */
 
-sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
-    function(ol, ManagedObject) {
+sap.ui.define(['ol', 'sap/ui/core/Element'],
+    function(ol, Element) {
         "use strict";
-        var Source = ManagedObject.extend("incentergy.ol.source.Source", {
+        var Source = Element.extend("incentergy.ol.source.Source", {
             metadata: {
                 library: "incentergy.ol",
                 "abstract": true,
@@ -15,11 +15,11 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                 this.pMapSet = new Promise(function(resolve, reject) {
                     me.fnMapSet = resolve;
                 });
-                ManagedObject.apply(this, arguments);
+                Element.apply(this, arguments);
             },
             setParent: function(oParent) {
                 var me = this;
-                var retVal = ManagedObject.prototype.setParent.apply(this, arguments);
+                var retVal = Element.prototype.setParent.apply(this, arguments);
                 oParent.mapSet().then(function() {
                     me.fnMapSet();
                 });
