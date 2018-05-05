@@ -20,7 +20,9 @@ sap.ui.define(['ol', './Layer'],
             constructor: function(mProperties) {
                 // Call parent constructor
                 Layer.apply(this, arguments);
-                this._layer = new ol.layer.Tile({ "source": this.getSource()._source });
+                if(this.getSource()) {                	
+                	this._layer = new ol.layer.Tile({ "source": this.getSource()._source });
+                }
             }
         });
         return Tile;

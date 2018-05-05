@@ -3,10 +3,10 @@
  */
 
 // Provides the base class for all layers.
-sap.ui.define(['ol', 'sap/ui/base/Object', 'sap/ui/base/ManagedObject', 'sap/ui/Device', 'jquery.sap.strings', 'jquery.sap.trace'],
-    function(ol, BaseObject, ManagedObject, Device /* , jQuerySap */ ) {
+sap.ui.define(['ol', 'sap/ui/base/Object', 'sap/ui/core/Element'],
+    function(ol, BaseObject, Element) {
         "use strict";
-        var Base = ManagedObject.extend("incentergy.ol.layer.Base", {
+        var Base = Element.extend("incentergy.ol.layer.Base", {
             metadata: {
                 "abstract": true,
             },
@@ -15,14 +15,14 @@ sap.ui.define(['ol', 'sap/ui/base/Object', 'sap/ui/base/ManagedObject', 'sap/ui/
                 this.pMapSet = new Promise(function(resolve, reject) {
                     me.fnMapSet = resolve;
                 });
-                ManagedObject.apply(this, arguments);
+                Element.apply(this, arguments);
             },
             setParent: function(oParent) {
                 var me = this;
                 oParent._rendered().then(function() {
                     oParent._map.addLayer(me._layer);
                 });
-                var retVal = ManagedObject.prototype.setParent.apply(this, arguments);
+                var retVal = Element.prototype.setParent.apply(this, arguments);
                 this.fnMapSet();
                 return retVal;
             },

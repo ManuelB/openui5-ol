@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unit tests for openui5-ol</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset="utf-8">
+    <script id="sap-ui-bootstrap"
+	    src="https://openui5.hana.ondemand.com/1.52.11/resources/sap-ui-core.js"
+	    data-sap-ui-resourceroots='{
+            "incentergy": "../src/incentergy",
+            "test": "./",
+       	    "ol": "https://cdnjs.cloudflare.com/ajax/libs/ol3/4.6.5/ol"
+        }'
+    	data-sap-ui-xx-bindingSyntax='complex' data-sap-ui-libs='sap.ui.core'
+		data-sap-ui-compatVersion='edge' data-sap-ui-preload='async'>
+    </script>
+    <script>    
+    sap.ui.getCore().attachInit(function() {
+     
+        jQuery.sap.require("sap.ui.qunit.qunit-css");
+        jQuery.sap.require("sap.ui.thirdparty.qunit");
+        jQuery.sap.require("sap.ui.qunit.qunit-junit");
+        jQuery.sap.require("sap.ui.qunit.qunit-coverage");
+        // Phantom js does not have a function.bind implementation so we are using a polyfill
+        if (!Function.prototype.bind) {
+            Function.prototype.bind = function(oThis) {
+                return jQuery.proxy(this, oThis);
+            };
+        }
+
+        jQuery.sap.require("test.qunitErrorLogging");
+        // model tests
+        jQuery.sap.require("test.allTests");
+    });
+    </script>
+</head>
+<body>
+<div id="content"></div>
+<h1 id="qunit-header">Unit tests for openui5-ol</h1>
+<h2 id="qunit-banner"></h2>
+<h2 id="qunit-userAgent"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<ol id="qunit-tests"></ol>
+<div id="qunit-fixture"></div>
+</body>
+</html>

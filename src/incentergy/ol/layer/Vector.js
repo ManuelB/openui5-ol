@@ -23,13 +23,13 @@ sap.ui.define(['ol', './Layer'],
                 var source = this.getSource();
                 if (source && source._source) {
                     this._layer = new ol.layer.Vector({ "source": source._source });
+                    var me = this;
+                    this._layer.on("postcompose", function() {
+                    	me.firePostcompose();
+                    });
                 } else {
                     jQuery.sap.log.warning("Layer: " + this.getId() + " initialized without source.");
                 }
-                var me = this;
-                this._layer.on("postcompose", function() {
-                    me.firePostcompose();
-                });
             }
         });
         return Vector;

@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.incentergy.openui5</groupId>
 	<artifactId>ol</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>OpenUI5 OpenLayers Library</name>
 	<description>This project implements an integration between OpenLayers and OpenUI5.</description>
 	<url>https://github.com/ManuelB/openui5-ol/</url>
@@ -25,8 +25,8 @@
 	<scm>
 		<url>https://github.com/ManuelB/openui5-ol</url>
 		<connection>scm:git:https://github.com/ManuelB/openui5-ol</connection>
-	  <tag>ol-0.0.1</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 	<developers>
 		<developer>
 			<id>ManuelB</id>
@@ -40,6 +40,28 @@
 	</issueManagement>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>com.github.klieber</groupId>
+				<artifactId>phantomjs-maven-plugin</artifactId>
+				<version>0.7</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>install</goal>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<version>2.1.1</version>
+					<checkSystemPath>false</checkSystemPath>
+					<script>${project.basedir}/test/run-qunit.js</script>
+					<arguments>
+						<argument>${project.basedir}/test/testsuite.qunit.html</argument>
+					</arguments>
+					<commandLineOptions>--ignore-ssl-errors=true --web-security=false</commandLineOptions>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.0.2</version>

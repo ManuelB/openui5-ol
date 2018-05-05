@@ -15,11 +15,18 @@ sap.ui.define(['ol', './Source'],
                         singularName: "feature"
                     }
                 },
-                defaultAggregation: "features"
+                defaultAggregation: "features",
+                events: {
+                    addfeature: {}
+                }
             },
             constructor: function() {
                 Source.apply(this, arguments);
                 this._source = new ol.source.Vector();
+                var me = this;
+                this._source.on("addfeature", function(){
+                    me.fireAddfeature();
+                });
             },
             getExtent: function() {
                 return this._source.getExtent();
