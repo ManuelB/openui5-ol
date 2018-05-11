@@ -27,9 +27,6 @@ sap.ui.define(['ol', './Source'],
                 this._source.on("addfeature", function(){
                     me.fireAddfeature();
                 });
-            },
-            getExtent: function() {
-                return this._source.getExtent();
             }
         });
         return Vector;

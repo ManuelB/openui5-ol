@@ -36,6 +36,7 @@ sap.ui.define([], // library dependency
                 "incentergy.ol.layer.Base",
                 "incentergy.ol.layer.Layer",
                 "incentergy.ol.layer.Tile",
+                "incentergy.ol.layer.TileWMS",
                 "incentergy.ol.layer.Vector",
                 "incentergy.ol.source.Vector",
                 "incentergy.ol.source.OSM",
@@ -43,6 +44,8 @@ sap.ui.define([], // library dependency
                 "incentergy.ol.source.Tile",
                 "incentergy.ol.source.UrlTile",
                 "incentergy.ol.source.TileImage",
+                "incentergy.ol.source.Image",
+                "incentergy.ol.source.ImageWMS",
                 "incentergy.ol.source.XYZ"
             ],
             elements: []

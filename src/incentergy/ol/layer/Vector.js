@@ -25,7 +25,7 @@ sap.ui.define(['ol', './Layer'],
                     this._layer = new ol.layer.Vector({ "source": source._source });
                     var me = this;
                     this._layer.on("postcompose", function() {
-                    	me.firePostcompose();
+                        me.firePostcompose();
                     });
                 } else {
                     jQuery.sap.log.warning("Layer: " + this.getId() + " initialized without source.");
