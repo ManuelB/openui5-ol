@@ -55,7 +55,7 @@ sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], functi
             // that would require rerendering
         },
         /**
-         * After th rendering create an openlayers
+         * After the rendering create an openlayers
          * map and place if in the generated div container.
          */
         onAfterRendering: function() {
