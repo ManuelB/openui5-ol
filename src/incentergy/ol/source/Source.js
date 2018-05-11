@@ -27,6 +27,11 @@ sap.ui.define(['ol', 'sap/ui/core/Element'],
             },
             mapSet: function() {
                 return this.pMapSet;
+            },
+            getExtent: function() {
+                if (this._source) {
+                    return this._source.getExtent();
+                }
             }
         });
         return Source;

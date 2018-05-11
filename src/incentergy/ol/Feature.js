@@ -106,7 +106,7 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
                                 // end performance measurement
                                 jQuery.sap.measure.end(me.getId() + "---FeatureGeneration");
                            } catch(e) {
-                               jQuery.sap.log.warning("Could not add genometry with WKT string: "+wkt);
+                               jQuery.sap.log.error("Could not add geometry with WKT string: "+wkt+" Error: "+e);
                            }
                         })
                     })

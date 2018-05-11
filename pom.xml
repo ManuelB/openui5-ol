@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.incentergy.openui5</groupId>
 	<artifactId>ol</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>0.0.6-SNAPSHOT</version>
 	<name>OpenUI5 OpenLayers Library</name>
 	<description>This project implements an integration between OpenLayers and OpenUI5.</description>
 	<url>https://github.com/ManuelB/openui5-ol/</url>

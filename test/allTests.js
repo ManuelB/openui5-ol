@@ -17,8 +17,11 @@ sap.ui.define([
     "test/incentergy/ol/source/OSM",
     "test/incentergy/ol/source/Vector",
     "test/incentergy/ol/source/TileImage",
+    "test/incentergy/ol/source/Image",
+    "test/incentergy/ol/source/ImageWMS",
     "test/incentergy/ol/source/XYZ",
     "test/incentergy/ol/source/Tile",
+    "test/incentergy/ol/source/TileWMS",
     "test/incentergy/ol/source/BingMaps"
 ], function() {
 	"use strict";

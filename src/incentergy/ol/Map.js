@@ -15,7 +15,8 @@ sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], functi
                 layers: {
                     type: "incentergy.ol.layer.Base",
                     multiple: true,
-                    singularName: "layer"
+                    singularName: "layer",
+                    bindable: true
                 }
             }
         },
@@ -54,7 +55,7 @@ sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], functi
             // that would require rerendering
         },
         /**
-         * After th rendering create an openlayers
+         * After the rendering create an openlayers
          * map and place if in the generated div container.
          */
         onAfterRendering: function() {
@@ -66,17 +67,17 @@ sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], functi
                 }),
                 target: this.getId()
             });
-            try {            	
-            	ResizeHandler.register(this.getDomRef(), jQuery.proxy(this.onresize, this));
-            } catch(e) {
-            	jQuery.sap.log.error("Could not attach resize handler: "+e);
+            try {
+                ResizeHandler.register(this.getDomRef(), jQuery.proxy(this.onresize, this));
+            } catch (e) {
+                jQuery.sap.log.error("Could not attach resize handler: " + e);
             }
         },
         /**
          * When the control is resized, update the map size.
          */
-        onresize: function () {
-        	this._map.updateSize();
+        onresize: function() {
+            this._map.updateSize();
         },
         /**
          * Returns a promise if this map was already
