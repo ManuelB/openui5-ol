@@ -43,7 +43,10 @@ sap.ui.define(['ol', './Source'],
             },
             constructor: function() {
                 Source.apply(this, arguments);
-                this._source = new ol.source.Vector();
+                this._source = new ol.source.Vector({
+                    url: this.getUrl() ? this._getUrlFunction() : undefined,
+                    format: new ol.format[this.getFormat()]()
+                });
                 var me = this;
                 this._source.on("addfeature", function() {
                     me.fireAddfeature();
@@ -63,7 +66,9 @@ sap.ui.define(['ol', './Source'],
                 return retVal;
             },
             setFormat: function(format) {
-                this._source.setFormat(new ol.format[format]());
+                if (this._source) {
+                    this._source.setFormat(new ol.format[format]());
+                }
                 return this.setProperty("format", format);
             },
             _getUrlFunction: function() {
