@@ -170,7 +170,7 @@ sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], functi
         addInteraction: function(oInteraction) {
             var me = this;
             this._rendered().then(function() {
-                me._map.addInteraction(oInteraction);
+                me._map.addInteraction(oInteraction._interaction);
             })
             return this.addAggregation("interactions", oInteraction);
         }
