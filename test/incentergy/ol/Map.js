@@ -4,11 +4,11 @@ sap.ui.define([
     "incentergy/ol/layer/Tile",
     "incentergy/ol/source/Vector",
     "incentergy/ol/source/TileImage",
-    "incentergy/ol/interaction/Interaction",
+    "incentergy/ol/interaction/Select",
     "sap/ui/model/json/JSONModel",
     "sap/ui/thirdparty/sinon",
     "sap/ui/thirdparty/sinon-qunit"
-], function(Map, Vector, Tile, VectorSource, TileImage, Interaction, JSONModel) {
+], function(Map, Vector, Tile, VectorSource, TileImage, Select, JSONModel) {
     "use strict";
     QUnit.module("incentergy/ol/Map", {
         beforeEach: function() {
@@ -138,10 +138,10 @@ sap.ui.define([
         oMap._map = {
             "addInteraction": sinon.stub()
         };
-        var oInteraction = new Interaction();
+        var oInteraction = new Select();
         oMap.addInteraction(oInteraction);
         oMap._rendered().then(function() {
-            assert.equal(oInteraction, oMap._map.addInteraction.getCall(0).args[0]);
+            assert.equal(oInteraction._interaction, oMap._map.addInteraction.getCall(0).args[0]);
             done();
         });
     });
