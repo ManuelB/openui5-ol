@@ -27,4 +27,17 @@ sap.ui.define([
         var aExtend = oVector.getExtent();
         assert.deepEqual(aMockedExtent, aExtend);
     });
+
+    QUnit.test("Test setUrl", function(assert) {
+        expect(2);
+        var oVector = new Vector();
+        oVector._source = {
+            "setUrl": sinon.stub()
+        };
+        var sTestUrl = "http://www.example.com/wfs?";
+        oVector.setUrl(sTestUrl);
+        assert.equal(oVector._source.setUrl.getCall(0).args[0](), "http://www.example.com/wfs?&EPSG:3857");
+        assert.equal(oVector._source.setUrl.getCall(0).args[0]([0, 0, 10, 10]), "http://www.example.com/wfs?bbox=0,0,10,10,&EPSG:3857");
+
+    });
 });

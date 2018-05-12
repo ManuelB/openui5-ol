@@ -141,7 +141,7 @@ sap.ui.define([
         var oInteraction = new Interaction();
         oMap.addInteraction(oInteraction);
         oMap._rendered().then(function() {
-            assert.equal(oInteraction, oMap._map.addInteraction.getCall(0).args[0]);
+            assert.equal(oInteraction._interaction, oMap._map.addInteraction.getCall(0).args[0]);
             done();
         });
     });
