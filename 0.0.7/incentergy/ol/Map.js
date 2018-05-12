@@ -44,7 +44,7 @@ sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], functi
             // When the theme changes we update the size
             // of the map if it is already there
             sap.ui.getCore().attachThemeChanged(function() {
-                if (me._map) {
+                if (me._map && typeof me._map.updateSize === "function") {
                     me._map.updateSize();
                 }
             });
