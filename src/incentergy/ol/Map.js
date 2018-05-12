@@ -9,9 +9,23 @@ sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], functi
     var Map = Control.extend("incentergy.ol.Map", /** @lends incentergy.ol.Map.prototype */ {
         metadata: {
             library: "incentergy.ol",
-            properties: {},
+            properties: {
+                "zoom": {
+                    type: "int",
+                    defaultValue: null
+                },
+                "center": {
+                    type: "String",
+                    defaultValue: null
+                }
+            },
             defaultAggregation: "layers",
             aggregations: {
+                interactions: {
+                    type: "incentergy.ol.interaction.Interaction",
+                    multiple: true,
+                    singularName: "interaction"
+                },
                 layers: {
                     type: "incentergy.ol.layer.Base",
                     multiple: true,
@@ -62,7 +76,7 @@ sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], functi
             this._fnRendered();
             this._map = new ol.Map({
                 view: new ol.View({
-                    center: [0, 0],
+                    center: this.getCenter() ? this.parseFloatArray(this.getCenter()) : [0, 0],
                     zoom: 1
                 }),
                 target: this.getId()
@@ -71,6 +85,13 @@ sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], functi
                 ResizeHandler.register(this.getDomRef(), jQuery.proxy(this.onresize, this));
             } catch (e) {
                 jQuery.sap.log.error("Could not attach resize handler: " + e);
+            }
+        },
+        parseFloatArray: function(sTwoFloats) {
+            try {
+                return sTwoFloats.split(/,/).map(function(s) { return parseFloat(s); });
+            } catch (e) {
+                jQuery.sap.log.error("Tried to parse: " + sTwoFloats + " but failed. Working example: '10,11'. Details: " + e);
             }
         },
         /**
@@ -116,15 +137,42 @@ sap.ui.define(["ol", "sap/ui/core/Control", "sap/ui/core/ResizeHandler"], functi
         },
         /**
          * Set the center of the current view.
-         * @param {ol.Coordinate|undefined} center The center of the view.
+         * @param {ol.Coordinate|String|undefined} center The center of the view.
          * @observable
          * @api
          */
         setCenter: function(center) {
             var me = this;
+            if (typeof center == "string") {
+                center = this.parseFloatArray(center);
+            }
             this._rendered().then(function() {
                 me._map.getView().setCenter(center);
             });
+            return this.setProperty("center", center ? (center[0] + "," + center[1]) : undefined);
+        },
+        /**
+         * Set the zoom of the current view.
+         * @param {int} center The zoom level
+         * @observable
+         * @api
+         */
+        setZoom: function(zoom) {
+            var me = this;
+            this._rendered().then(function() {
+                me._map.getView().setZoom(zoom);
+            });
+            return this.setProperty("zoom", zoom);
+        },
+        /**
+         * Adds the interaction to the map.
+         */
+        addInteraction: function(oInteraction) {
+            var me = this;
+            this._rendered().then(function() {
+                me._map.addInteraction(oInteraction);
+            })
+            return this.addAggregation("interactions", oInteraction);
         }
     });
     return Map;

@@ -37,6 +37,7 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
             },
             constructor: function() {
                 this._feature = new ol.Feature();
+                this._feature.set("__ui5control", this);
                 this._bFeatureAdded = false;
                 var me = this;
                 this._pLayerSet = new Promise(function(resolve, reject) {
@@ -105,9 +106,9 @@ sap.ui.define(['ol', 'sap/ui/base/ManagedObject'],
 
                                 // end performance measurement
                                 jQuery.sap.measure.end(me.getId() + "---FeatureGeneration");
-                           } catch(e) {
-                               jQuery.sap.log.error("Could not add geometry with WKT string: "+wkt+" Error: "+e);
-                           }
+                            } catch (e) {
+                                jQuery.sap.log.error("Could not add geometry with WKT string: " + wkt + " Error: " + e);
+                            }
                         })
                     })
                 })

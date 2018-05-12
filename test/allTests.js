@@ -10,6 +10,7 @@ sap.ui.define([
     "test/incentergy/ol/geom/Geometry",
     "test/incentergy/ol/geom/Circle",
     "test/incentergy/ol/geom/SimpleGeometry",
+    "test/incentergy/ol/interaction/Select",
     "test/incentergy/ol/library",
     "test/incentergy/ol/Map",
     "test/incentergy/ol/source/UrlTile",
@@ -24,5 +25,5 @@ sap.ui.define([
     "test/incentergy/ol/source/TileWMS",
     "test/incentergy/ol/source/BingMaps"
 ], function() {
-	"use strict";
+    "use strict";
 });
