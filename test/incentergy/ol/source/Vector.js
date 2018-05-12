@@ -36,8 +36,8 @@ sap.ui.define([
         };
         var sTestUrl = "http://www.example.com/wfs?";
         oVector.setUrl(sTestUrl);
-        assert.equal(oVector._source.setUrl.getCall(0).args[0](), "http://www.example.com/wfs?&EPSG:3857");
-        assert.equal(oVector._source.setUrl.getCall(0).args[0]([0, 0, 10, 10]), "http://www.example.com/wfs?bbox=0,0,10,10,&EPSG:3857");
+        assert.equal(oVector._source.setUrl.getCall(0).args[0](), "http://www.example.com/wfs?&srsName=EPSG:3857");
+        assert.equal(oVector._source.setUrl.getCall(0).args[0]([0, 0, 10, 10]), "http://www.example.com/wfs?bbox=0,0,10,10&srsName=EPSG:3857");
 
     });
 });

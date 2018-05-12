@@ -75,8 +75,8 @@ sap.ui.define(['ol', './Source'],
                 var me = this;
                 return function(extent) {
                     return me.getUrl() +
-                        (extent ? 'bbox=' + extent.join(',') + ',' : '') +
-                        '&' + me.getCrs();
+                        (extent ? 'bbox=' + extent.join(',') : '') +
+                        '&srsName=' + me.getCrs();
                 };
             }
         });
